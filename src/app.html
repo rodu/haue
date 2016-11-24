@@ -1,4 +1,6 @@
 <template>
+  <require from="./components/rooms-list/rooms-list"></require>
+
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -27,14 +29,15 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-3 col-md-2 sidebar">
-        <ul class="nav nav-sidebar">
+        <rooms-list></rooms-list>
+        <!-- <ul class="nav nav-sidebar">
           <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
           <li><a href="#">Living Room</a></li>
           <li><a href="#">Kitchen</a></li>
           <li><a href="#">Bedroom</a></li>
           <li><a href="#">Hobby Room</a></li>
           <li><a href="#">Garden Patio</a></li>
-        </ul>
+        </ul> -->
         <!-- <ul class="nav nav-sidebar">
           <li><a href="">Nav item</a></li>
           <li><a href="">Nav item again</a></li>
