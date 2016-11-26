@@ -1,11 +1,11 @@
+import { RoomsService } from '../../services/roomsService';
+
 export class RoomsList {
 
-  rooms = [
-    'Kitchen',
-    'Bathroom',
-    'Living Room'
-  ];
+  rooms = [];
 
-  constructor() {
+  static inject() { return [RoomsService]; }
+  constructor(roomsService) {
+    this.rooms = roomsService.getRooms();
   }
 }
