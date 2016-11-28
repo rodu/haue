@@ -9,7 +9,8 @@
   "scripts": {
     "start": "au run --env dev --watch",
     "build": "au build",
-    "test": "au test"
+    "test": "au test",
+    "emulator": "./emulator.sh"
   },
   "license": "MIT",
   "dependencies": {
