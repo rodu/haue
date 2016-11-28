@@ -132,6 +132,10 @@
             "path": "../node_modules/aurelia-testing/dist/amd",
             "main": "aurelia-testing",
             "env": "dev"
+          },
+          {
+            "name": "jsHue",
+            "path": "../node_modules/jshue-module/index"
           }
         ]
       }
