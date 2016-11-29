@@ -1,6 +1,5 @@
 import { inject } from 'aurelia-framework';
 import { RoomsService } from '../../services/roomsService';
-import * as jsHue from 'jsHue';
 
 @inject(RoomsService)
 export class RoomsList {
@@ -8,7 +7,13 @@ export class RoomsList {
   rooms = [];
 
   constructor(roomsService) {
-    this.rooms = roomsService.getRooms();
-    console.log(jsHue);
+    this.roomsService = roomsService;
+  }
+
+  created() {
+    this.roomsService.getRooms().then((rooms) => {
+      console.log(rooms);
+      this.rooms = rooms;
+    });
   }
 }

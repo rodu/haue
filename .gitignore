@@ -5,3 +5,4 @@ scripts/app-bundle.*
 scripts/vendor-bundle.js
 SteveyO-Hue-Emulator-8cdd75e/
 npm-debug.log
+docs/

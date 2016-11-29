@@ -1,9 +1,9 @@
+import { HueService } from 'HueService';
+
 export class RoomsService {
   getRooms() {
-    return [
-      'Kitchen',
-      'Bathroom',
-      'Living Room'
-    ];
+    return new Promise((resolve, reject) => {
+      jsHue.getGroups(resolve, reject);
+    });
   }
 }
