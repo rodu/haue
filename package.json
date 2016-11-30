@@ -10,7 +10,7 @@
     "start": "au run --env dev --watch",
     "build": "au build",
     "test": "au test",
-    "emulator": "./emulator.sh",
+    "emulator": "java -jar ./emulator/HueEmulator-v0.6.jar",
     "docs:build": "jsdoc node_modules/jshue-module/index.js -d docs",
     "docs:serve": "http-server docs/"
   },
