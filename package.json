@@ -11,7 +11,7 @@
     "build": "au build",
     "test": "au test",
     "emulator": "java -jar ./emulator/HueEmulator-v0.6.jar",
-    "docs:build": "jsdoc node_modules/jshue-module/index.js -d docs",
+    "docs:build": "jsdoc lib/jshue-module/index.js -d docs",
     "docs:serve": "http-server docs/"
   },
   "license": "MIT",
@@ -19,8 +19,7 @@
     "aurelia-animator-css": "^1.0.0",
     "aurelia-bootstrapper": "^1.0.0",
     "aurelia-fetch-client": "^1.0.0",
-    "bluebird": "^3.4.1",
-    "jshue-module": "^0.3.1"
+    "bluebird": "^3.4.1"
   },
   "peerDependencies": {},
   "devDependencies": {

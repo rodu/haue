@@ -134,8 +134,8 @@
             "env": "dev"
           },
           {
-            "name": "jsHue",
-            "path": "../node_modules/jshue-module/index"
+            "name": "jshue-module",
+            "path": "../lib/jshue-module/index"
           }
         ]
       }

@@ -1,0 +1,74 @@
+{
+  "_args": [
+    [
+      "jshue-module@^0.3.1",
+      "/home/rob/repository/dev/haue/workspace/haue"
+    ]
+  ],
+  "_from": "jshue-module@>=0.3.1 <0.4.0",
+  "_id": "jshue-module@0.3.1",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/jshue-module",
+  "_nodeVersion": "5.5.0",
+  "_npmUser": {
+    "email": "mattmichler@gmail.com",
+    "name": "mattmichler"
+  },
+  "_npmVersion": "3.3.12",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "jshue-module",
+    "raw": "jshue-module@^0.3.1",
+    "rawSpec": "^0.3.1",
+    "scope": null,
+    "spec": ">=0.3.1 <0.4.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/jshue-module/-/jshue-module-0.3.1.tgz",
+  "_shasum": "7a73798abaf42e99f6a5a2d01d02d718b898f3ff",
+  "_shrinkwrap": null,
+  "_spec": "jshue-module@^0.3.1",
+  "_where": "/home/rob/repository/dev/haue/workspace/haue",
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/mattmichler/jshue-module/issues"
+  },
+  "dependencies": {},
+  "description": "A simple commonjs module for Philips Hue",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "7a73798abaf42e99f6a5a2d01d02d718b898f3ff",
+    "tarball": "https://registry.npmjs.org/jshue-module/-/jshue-module-0.3.1.tgz"
+  },
+  "gitHead": "81afd93a10294a865d90fe9c63c3dbf93b716070",
+  "homepage": "https://github.com/mattmichler/jshue-module#readme",
+  "keywords": [
+    "hue",
+    "module",
+    "philips"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "mattmichler",
+      "email": "mattmichler@gmail.com"
+    }
+  ],
+  "name": "jshue-module",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattmichler/jshue-module.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.3.1"
+}
