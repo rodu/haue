@@ -1,4 +1,6 @@
 import { inject } from 'aurelia-framework';
+import _ from 'lodash';
+
 import { RoomsService } from '../../services/roomsService';
 
 @inject(RoomsService)
@@ -12,8 +14,7 @@ export class RoomsList {
 
   created() {
     this.roomsService.getRooms().then((rooms) => {
-      console.log(rooms);
-      this.rooms = rooms;
+      this.rooms = _.map(rooms, 'name');
     });
   }
 }
