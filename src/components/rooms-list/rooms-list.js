@@ -15,6 +15,8 @@ export class RoomsList {
   created() {
     this.roomsService.getRooms().then((rooms) => {
       this.rooms = _.map(rooms, 'name');
+    }).catch((error) => {
+      console.error(error.message);
     });
   }
 }

@@ -12,7 +12,7 @@ export class RoomsService {
   getRooms() {
     return new Promise((resolve, reject) => {
       this.bridge.getGroups(resolve, (error) => {
-        reject(error.message);
+        reject(new Error('Could not get groups from bridge!'));
       });
     });
   }
