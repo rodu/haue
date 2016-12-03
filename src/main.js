@@ -1,6 +1,13 @@
+import {LogManager} from 'aurelia-framework';
+import {ConsoleAppender} from 'aurelia-logging-console';
+
 import environment from './environment';
+
 import { combineReducers, createStore } from 'redux';
 import reducers from './reducers/reducers';
+
+LogManager.addAppender(new ConsoleAppender());
+LogManager.setLevel(LogManager.logLevel.debug);
 
 //Configure Bluebird Promises.
 //Note: You may want to use environment-specific configuration.
