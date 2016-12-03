@@ -113,7 +113,20 @@
           "aurelia-task-queue",
           "aurelia-templating",
           "aurelia-templating-binding",
-          "lodash",
+          {
+            "name": "lodash",
+            "path": "../node_modules/lodash"
+          },
+          {
+            "name": "aurelia-redux-plugin",
+            "path": "../node_modules/aurelia-redux-plugin/dist/commonjs",
+            "main": "aurelia-redux-plugin"
+          },
+          {
+            "name": "redux",
+            "path": "../node_modules/redux/dist",
+            "main": "redux"
+          },
           {
             "name": "text",
             "path": "../scripts/text"

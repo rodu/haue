@@ -19,8 +19,10 @@
     "aurelia-animator-css": "^1.0.0",
     "aurelia-bootstrapper": "^1.0.0",
     "aurelia-fetch-client": "^1.0.0",
+    "aurelia-redux-plugin": "0.0.4",
     "bluebird": "^3.4.1",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "redux": "^3.6.0"
   },
   "peerDependencies": {},
   "devDependencies": {
