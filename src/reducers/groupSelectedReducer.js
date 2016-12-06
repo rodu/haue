@@ -1,15 +1,15 @@
-import actions from '../config/actions';
+import actions from '../actions/actions';
 import { reduce } from './reducers';
 
 const initialState = {
-  [actions.GROUP_SELECTED]: ''
+  [actions.groupSelected]: ''
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-  case actions.GROUP_SELECTED:
+  case actions.groupSelected:
     console.log('Running groupSelectedReducer');
-    return reduce(state, actions.GROUP_SELECTED, action.payload);
+    return reduce(state, actions.groupSelected, action.payload);
 
   default:
     return state;

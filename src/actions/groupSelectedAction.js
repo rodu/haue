@@ -1,4 +1,4 @@
-import actions from '../config/actions';
+import actions from './actions';
 
 export default function(payload) {
   return {
