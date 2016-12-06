@@ -6,7 +6,6 @@ import environment from './environment';
 import { combineReducers, createStore } from 'redux';
 import reducers from './reducers/reducers';
 
-LogManager.addAppender(new ConsoleAppender());
 LogManager.setLevel(LogManager.logLevel.debug);
 
 //Configure Bluebird Promises.

@@ -1,8 +1,15 @@
-import { inject } from 'aurelia-framework';
+import { inject, LogManager } from 'aurelia-framework';
 import { Store } from 'aurelia-redux-plugin';
+import config from '../config/config';
 
-const persistStore = _.debounce(function() {
-  console.log(this.getState());
+const logger = LogManager.getLogger('StatePersister');
+
+const persistState = _.debounce(function() {
+  const state = this.getState();
+
+  logger.info('Persisting state', state);
+
+  localStorage.setItem(config.PERSISTED_STATE, state);
 }, 250);
 
 @inject(Store)
@@ -14,7 +21,7 @@ export default class StatePersister {
 
   activate() {
     // Automatically will persist to local storage when the store changes
-    this.store.subscribe(persistStore.bind(this.store));
+    this.store.subscribe(persistState.bind(this.store));
   }
 
 }
