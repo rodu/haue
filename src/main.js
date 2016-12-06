@@ -2,9 +2,6 @@ import {LogManager} from 'aurelia-framework';
 
 import environment from './environment';
 
-import { combineReducers, createStore } from 'redux';
-import reducers from './reducers/reducers';
-
 LogManager.setLevel(LogManager.logLevel.debug);
 
 //Configure Bluebird Promises.
@@ -18,9 +15,7 @@ Promise.config({
 export function configure(aurelia) {
   aurelia.use
     .standardConfiguration()
-    .plugin('aurelia-redux-plugin', {
-      store: createStore(combineReducers(reducers))
-    })
+    .plugin('aurelia-redux-plugin')
     .feature('resources');
 
   if (environment.debug) {
