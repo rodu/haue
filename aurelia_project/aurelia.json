@@ -115,7 +115,8 @@
           "aurelia-templating-binding",
           {
             "name": "lodash",
-            "path": "../node_modules/lodash"
+            "path": "../node_modules/lodash",
+            "main": "lodash"
           },
           {
             "name": "aurelia-redux-plugin",

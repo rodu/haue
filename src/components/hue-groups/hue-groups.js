@@ -7,8 +7,7 @@ import { HueGroupsService } from '../../services/HueGroupsService';
 import groupSelectedAction from '../../actions/groupSelectedAction';
 const logger = LogManager.getLogger('HueGroups');
 
-@inject(HueGroupsService)
-@inject(Store)
+@inject(HueGroupsService, Store)
 export class HueGroups {
 
   groups = [];
