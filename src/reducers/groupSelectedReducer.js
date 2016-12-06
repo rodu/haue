@@ -8,6 +8,7 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
   case actions.GROUP_SELECTED:
+    console.log('Running groupSelectedReducer');
     return reduce(state, actions.GROUP_SELECTED, action.payload);
 
   default:

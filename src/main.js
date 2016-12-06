@@ -20,10 +20,10 @@ Promise.config({
 export function configure(aurelia) {
   aurelia.use
     .standardConfiguration()
-    .feature('resources')
     .plugin('aurelia-redux-plugin', {
       store: createStore(combineReducers(reducers))
-    });
+    })
+    .feature('resources');
 
   if (environment.debug) {
     aurelia.use.developmentLogging();

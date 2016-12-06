@@ -1,5 +1,8 @@
 <template>
   <ul class="nav nav-sidebar">
-    <li repeat.for="group of groups">${group}</li>
+    <li repeat.for="group of groups"
+      click.delegate="selectGroup(group)">
+      ${group}
+    </li>
   </ul>
 </template>
