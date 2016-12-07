@@ -1,6 +1,4 @@
 
-const actions = {
+export const actions = {
   groupSelected: 'groupSelected'
 };
-
-export default actions;

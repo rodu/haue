@@ -7,5 +7,5 @@ export function reduce(state, propertyName, propertyValue) {
 }
 
 export default {
-  groupSelectedReducer
+  groupSelected: groupSelectedReducer
 };
