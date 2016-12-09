@@ -25,15 +25,17 @@ export class HueGroups {
   }
 
   created() {
-    this.hueGroupsService.getGroups().then((groups) => {
-      const mapBinding = {
-        activeGroupName: this.stateReader.getProp('groupSelected.name')
-      };
+    this.hueGroupsService.getGroups()
+      .then((groups) => {
+        const mapBinding = {
+          activeGroupName: this.stateReader.getProp('groupSelected.name')
+        };
 
-      this.groups = _.map(groups, _.bind(mapActiveGroup, mapBinding));
-    }).catch((error) => {
-      logger.error(error.message);
-    });
+        this.groups = _.map(groups, _.bind(mapActiveGroup, mapBinding));
+      })
+      .catch((error) => {
+        logger.error(error.message);
+      });
   }
 
   selectGroup(name) {
