@@ -1,0 +1,7 @@
+<template>
+  <require from="../hue-light/hue-light"></require>
+
+  <div class="row placeholders">
+    <hue-light repeat.for="light of lights" light.bind="light"></hue-light>
+  </div>
+</template>
