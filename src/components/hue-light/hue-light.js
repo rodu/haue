@@ -9,9 +9,13 @@ export class HueLight {
   bind() {
     logger.info('Binding light', this.light);
 
-    const rgb = this.light.state.rgb;
+    const state = this.light.state;
+    const rgb = state.rgb;
+    const bri = (state.bri / 255).toFixed(1);
+
+    logger.info(`rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${bri})`);
     this.lightStyle = {
-      'background-color': `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`
+      'background-color': `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${bri})`
     };
   }
 }
