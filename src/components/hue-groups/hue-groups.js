@@ -27,6 +27,8 @@ export class HueGroups {
   created() {
     this.hueGroupsService.getGroups()
       .then((groups) => {
+        logger.debug('Loaded groups', groups);
+
         const mapBinding = {
           activeGroupName: this.stateReader.getProp('groupSelected.name')
         };
