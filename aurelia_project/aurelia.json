@@ -151,6 +151,15 @@
           {
             "name": "jshue-module",
             "path": "../lib/jshue-module/index"
+          },
+          {
+            "name": "hsl-to-rgb",
+            "path": "../node_modules/hsl-to-rgb-for-reals",
+            "main": "converter"
+          },
+          {
+            "name": "rgb-to-hsl",
+            "path": "../node_modules/rgb-to-hsl/index"
           }
         ]
       }
