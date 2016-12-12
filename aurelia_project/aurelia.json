@@ -160,6 +160,19 @@
           {
             "name": "rgb-to-hsl",
             "path": "../node_modules/rgb-to-hsl/index"
+          },
+          {
+            "name": "jquery",
+            "path": "../node_modules/jquery/dist",
+            "main": "jquery"
+          },
+          {
+            "name": "bootstrap-slider",
+            "path": "../node_modules/bootstrap-slider/dist",
+            "main": "bootstrap-slider",
+            "deps": ["jquery"],
+            "exports": "$",
+            "resources": ["css/bootstrap-slider.css"]
           }
         ]
       }
