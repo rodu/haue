@@ -1,5 +1,6 @@
 import { bindable, LogManager } from 'aurelia-framework';
-
+import 'bootstrap-slider';
+import $ from 'jquery';
 
 const logger = LogManager.getLogger('HueLight');
 const getBackgroundColor = (state, brightness) => {
@@ -23,9 +24,18 @@ export class HueLight {
     const state = this.light.state;
     const brightness = (state.bri / 255).toFixed(1);
 
-    this.lightStyle = {
-      'background-color': getBackgroundColor(state, brightness)
+    this.light.uiProps = {
+      style: {
+        'background-color': getBackgroundColor(state, brightness)
+      },
+      percentBrightness: Math.round(brightness * 100),
+      id: 'uniqueid-' + this.light.uniqueid.replace(/:/g, '-')
     };
-    this.percentBrightness = Math.round(brightness * 100) + '%';
+  }
+
+  attached() {
+    setTimeout(() => {
+      $(`#${this.light.uiProps.id}`).slider();
+    });
   }
 }

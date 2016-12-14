@@ -112,10 +112,14 @@ body {
   background-color: #d2d2d2;
 }
 
-.placeholder .light-shape {
+.light-placeholder .light-shape {
   width: 100px;
   height: 100px;
   border-radius: 50%;
   text-align: center;
   margin: 0 auto;
+}
+
+.light-placeholder .slider-horizontal {
+  width: 100px !important;
 }
