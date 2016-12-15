@@ -28,14 +28,23 @@ export class HueLight {
       style: {
         'background-color': getBackgroundColor(state, brightness)
       },
-      percentBrightness: Math.round(brightness * 100),
+      brightness: Math.round(brightness),
       id: 'uniqueid-' + this.light.uniqueid.replace(/:/g, '-')
     };
   }
 
   attached() {
     setTimeout(() => {
-      $(`#${this.light.uiProps.id}`).slider();
+      let slider = $(`#${this.light.uiProps.id}`).slider({
+        min: 0,
+        max: 100,
+        step: 1,
+        value: this.light.uiProps.brightness
+      });
+
+      slider.on('slide', (event) => {
+        this.light.uiProps.brightness = (event.value / 100);
+      });
     });
   }
 }

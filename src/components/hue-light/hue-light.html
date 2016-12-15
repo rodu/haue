@@ -1,15 +1,12 @@
 <template>
+  <require from="../../converters/number-percent"></require>
   <require from="bootstrap-slider/css/bootstrap-slider.css"></require>
+  <require from="./hue-light.css"></require>
 
   <div class="col-xs-6 col-sm-3 placeholder light-placeholder">
     <div style.bind="light.uiProps.style" class="light-shape"></div>
     <h4>${light.name}</h4>
-    <input id.bind="light.uiProps.id"
-      type="text"
-      data-slider-min="0"
-      data-slider-max="100"
-      data-slider-step="1"
-      data-slider-value="${light.uiProps.percentBrightness}">
-    <span class="text-muted">${light.uiProps.percentBrightness}%</span>
+    <input id.bind="light.uiProps.id" type="text">
+    <div class="text-muted">${light.uiProps.brightness | numberPercent}</div>
   </div>
 </template>
