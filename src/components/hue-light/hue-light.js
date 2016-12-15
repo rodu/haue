@@ -39,7 +39,8 @@ export class HueLight {
         min: 0,
         max: 100,
         step: 1,
-        value: this.light.uiProps.brightness
+        value: Math.round(this.light.uiProps.brightness) * 100,
+        tooltip: 'hide'
       });
 
       slider.on('slide', (event) => {

@@ -10,3 +10,7 @@
 .light-placeholder .slider-horizontal {
   width: 100px !important;
 }
+
+.light-placeholder .brightness-label {
+  margin-top: 10px;
+}

@@ -7,6 +7,8 @@
     <div style.bind="light.uiProps.style" class="light-shape"></div>
     <h4>${light.name}</h4>
     <input id.bind="light.uiProps.id" type="text">
-    <div class="text-muted">${light.uiProps.brightness | numberPercent}</div>
+    <div class="text-muted brightness-label">
+      ${light.uiProps.brightness | numberPercent}
+    </div>
   </div>
 </template>
