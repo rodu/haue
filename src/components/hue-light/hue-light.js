@@ -1,8 +1,12 @@
-import { bindable, LogManager } from 'aurelia-framework';
+import { inject, bindable, LogManager } from 'aurelia-framework';
 import 'bootstrap-slider';
 import $ from 'jquery';
+import _ from 'lodash';
+import { HueLightsService } from '../../services/HueLightsService';
+import config from '../../config/config';
 
 const logger = LogManager.getLogger('HueLight');
+
 const getBackgroundColor = (state, brightness) => {
   if (state.on) {
     const rgb = state.rgb;
@@ -15,8 +19,15 @@ const getBackgroundColor = (state, brightness) => {
   return '#ccc';
 };
 
+@inject(HueLightsService)
 export class HueLight {
   @bindable light;
+
+  _slider = null;
+
+  constructor(hueLightsService) {
+    this.hueLightsService = hueLightsService;
+  }
 
   bind() {
     logger.info('Binding light', this.light);
@@ -35,17 +46,38 @@ export class HueLight {
 
   attached() {
     setTimeout(() => {
-      let slider = $(`#${this.light.uiProps.id}`).slider({
+      this._slider = $(`#${this.light.uiProps.id}`).slider({
         min: 0,
         max: 100,
         step: 1,
-        value: Math.round(this.light.uiProps.brightness) * 100,
+        value: this.light.uiProps.brightness * 100,
         tooltip: 'hide'
       });
 
-      slider.on('slide', (event) => {
-        this.light.uiProps.brightness = (event.value / 100);
+      this._slider.on('slide', (event) => {
+        // Optimistically updates the UI first
+        this.light.uiProps.brightness = event.value / 100;
       });
+
+      this._slider.on('slide', _.throttle((event) => {
+        const bri = Math.floor(event.value * 2.54);
+
+        logger.info('Setting light brightness');
+
+        this.hueLightsService
+          // Set the light properties on the bridge
+          .setLightState(this.light.id, { bri: bri })
+          .then(() => {
+            logger.info('Light brightness set to', bri);
+          });
+
+        // Adjusts the light property again as returned by the bridge response
+      }, config.HUE_BRIDGE_DELAY));
     });
+  }
+
+  detached() {
+    // Removes events from slider plugin
+    this._slider.off('slide');
   }
 }
