@@ -1,6 +1,7 @@
 import { inject, LogManager } from 'aurelia-framework';
 import { HueService } from './HueService';
 import hsl2rgb from 'hsl-to-rgb';
+import $ from 'jquery';
 
 const logger = LogManager.getLogger('HueLightsService');
 
@@ -39,9 +40,18 @@ export class HueLightsService {
   setLightState(id, data) {
     logger.info('Setting light state', id, data);
     return new Promise((resolve, reject) => {
-      this.bridge.setLightState(id, data, resolve, () => {
+      $.ajax({
+        url: `http://127.0.0.1:8000/api/newdeveloper/lights/${id}/state`,
+        method: 'PUT',
+        dataType: 'json',
+        data
+      }).done(resolve).fail(() => {
         reject(new Error('Cannot set light properties! lightid: ' + id));
       });
+
+      /*this.bridge.setLightState(id, data, resolve, () => {
+        reject(new Error('Cannot set light properties! lightid: ' + id));
+      });*/
     });
   }
 
