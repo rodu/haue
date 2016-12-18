@@ -1,5 +1,6 @@
 import gulp from 'gulp';
 import browserSync from 'browser-sync';
+import proxyMiddleware from 'http-proxy-middleware';
 import historyApiFallback from 'connect-history-api-fallback/lib';
 import project from '../aurelia.json';
 import build from './build';
@@ -18,6 +19,8 @@ function reload(done) {
   done();
 }
 
+const proxy = proxyMiddleware('/api', { target: 'http://localhost:8000' });
+
 let serve = gulp.series(
   build,
   done => {
@@ -31,7 +34,7 @@ let serve = gulp.series(
         middleware: [historyApiFallback(), function(req, res, next) {
           res.setHeader('Access-Control-Allow-Origin', '*');
           next();
-        }]
+        }, proxy]
       }
     }, function(err, bs) {
       let urls = bs.options.get('urls').toJS();
