@@ -7,16 +7,35 @@ import config from '../../config/config';
 
 const logger = LogManager.getLogger('HueLight');
 
-const getBackgroundColor = (state, brightness) => {
+const getBackgroundColor = (state) => {
   if (state.on) {
     const rgb = state.rgb;
-    const value = `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${brightness})`;
+    const value = `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`;
 
     logger.info(value);
     return value;
   }
 
   return '#ccc';
+};
+
+const getBoxShadow = (opacity, backgroundColor) => {
+  return `1px 1px ${opacity * 100}px ${backgroundColor}`;
+};
+
+const getOpacity = (state) => {
+  return (state.bri / 2.54 / 100).toFixed(1);
+};
+
+const getStyle = (state) => {
+  const backgroundColor = getBackgroundColor(state);
+  const opacity = getOpacity(state);
+
+  return {
+    'background-color': backgroundColor,
+    opacity,
+    'box-shadow': getBoxShadow(opacity, backgroundColor)
+  };
 };
 
 @inject(HueLightsService)
@@ -33,12 +52,10 @@ export class HueLight {
     logger.info('Binding light', this.light);
 
     const state = this.light.state;
-    const brightness = (state.bri / 255).toFixed(1);
+    const brightness = (state.bri / 254).toFixed(1);
 
     this.light.uiProps = {
-      style: {
-        'background-color': getBackgroundColor(state, brightness)
-      },
+      style: getStyle(state),
       brightness: Math.round(brightness),
       id: 'uniqueid-' + this.light.uniqueid.replace(/:/g, '-')
     };
@@ -69,6 +86,8 @@ export class HueLight {
           .setLightState(this.light.id, { bri: bri })
           .then(() => {
             logger.info('Light brightness set to', bri);
+            this.light.state.bri = bri;
+            this.light.uiProps.style = getStyle(this.light.state);
           });
 
         // Adjusts the light property again as returned by the bridge response
