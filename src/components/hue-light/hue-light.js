@@ -4,16 +4,18 @@ import $ from 'jquery';
 import _ from 'lodash';
 import { HueLightsService } from '../../services/HueLightsService';
 import config from '../../config/config';
+import hueColors from 'hue-colors';
 
 const logger = LogManager.getLogger('HueLight');
 
 const getBackgroundColor = (state) => {
   if (state.on) {
-    const rgb = state.rgb;
-    const value = `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`;
+    const [ x, y ] = state.xy;
+    const hex = '#' + hueColors.CIE1931ToHex(x, y, state.bri);
 
-    logger.info(value);
-    return value;
+    logger.info('Converted color:', hex);
+
+    return hex;
   }
 
   return '#ccc';

@@ -173,6 +173,11 @@
             "deps": ["jquery"],
             "exports": "$",
             "resources": ["css/bootstrap-slider.css"]
+          },
+          {
+            "name": "hue-colors",
+            "path": "../lib/hue-hacking-node",
+            "main": "hue-colors"
           }
         ]
       }
