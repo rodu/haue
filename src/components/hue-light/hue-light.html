@@ -1,12 +1,18 @@
 <template>
   <require from="../../converters/number-percent"></require>
-  <require from="bootstrap-slider/css/bootstrap-slider.css"></require>
+  <require from="bootstrap-slider/css/bootstrap-slider.min.css"></require>
+  <require from="bootstrap-colorpicker/css/bootstrap-colorpicker.min.css"></require>
   <require from="./hue-light.css"></require>
 
   <div class="col-xs-6 col-sm-3 placeholder light-placeholder">
     <div style.bind="light.uiProps.style" class="light-shape"></div>
     <h4>${light.name}</h4>
-    <input id.bind="light.uiProps.id" type="text">
+    <div id="cp2" class="input-group colorpicker-component">
+      <input id="slider-${light.uiProps.id}" type="text">
+      <span id="colorpicker-${light.uiProps.id}" class="input-group-addon">
+        <i></i>
+      </span>
+    </div>
     <div class="text-muted brightness-label">
       ${light.uiProps.brightness | numberPercent}
     </div>

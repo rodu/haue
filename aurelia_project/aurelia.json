@@ -172,7 +172,15 @@
             "main": "bootstrap-slider",
             "deps": ["jquery"],
             "exports": "$",
-            "resources": ["css/bootstrap-slider.css"]
+            "resources": ["css/bootstrap-slider.min.css"]
+          },
+          {
+            "name": "bootstrap-colorpicker",
+            "path": "../lib/bootstrap-colorpicker",
+            "main": "js/bootstrap-colorpicker",
+            "deps": ["jquery"],
+            "exports": "$",
+            "resources": ["css/bootstrap-colorpicker.min.css"]
           },
           {
             "name": "hue-colors",

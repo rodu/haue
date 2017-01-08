@@ -1,5 +1,6 @@
 import { inject, bindable, LogManager } from 'aurelia-framework';
 import 'bootstrap-slider';
+import 'bootstrap-colorpicker';
 import $ from 'jquery';
 import _ from 'lodash';
 import { HueLightsService } from '../../services/HueLightsService';
@@ -65,13 +66,17 @@ export class HueLight {
 
   attached() {
     setTimeout(() => {
-      this._slider = $(`#${this.light.uiProps.id}`).slider({
+      const lightID = this.light.uiProps.id;
+
+      this._slider = $(`#slider-${lightID}`).slider({
         min: 0,
         max: 100,
         step: 1,
         value: this.light.uiProps.brightness * 100,
         tooltip: 'hide'
       });
+
+      this._colorpicker = $(`#colorpicker-${lightID}`).colorpicker();
 
       this._slider.on('slide', (event) => {
         // Optimistically updates the UI first
