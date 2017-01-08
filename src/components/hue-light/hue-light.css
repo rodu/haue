@@ -15,6 +15,15 @@
 
 .light-placeholder .slider-horizontal {
   width: 100px !important;
+  margin-left: 20px;
+}
+
+.light-placeholder .colorpicker-element {
+  border-radius: 4px;
+}
+
+.light-placeholder .colorpicker-component {
+    padding-right: 20px;
 }
 
 .light-placeholder .brightness-label {
