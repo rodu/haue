@@ -1,5 +1,4 @@
-import { inject, bindable, LogManager } from 'aurelia-framework';
-import 'bootstrap-slider';
+import { inject, bindable, LogManager } from 'aurelia-framework'; import 'bootstrap-slider';
 import 'bootstrap-colorpicker';
 import $ from 'jquery';
 import _ from 'lodash';
@@ -77,6 +76,9 @@ export class HueLight {
       });
 
       this._colorpicker = $(`#colorpicker-${lightID}`).colorpicker();
+      this._colorpicker.on('changeColor', _.throttle(function(event) {
+        console.log(event.color.toRGB());
+      }, config.HUE_BRIDGE_DELAY));
 
       this._slider.on('slide', (event) => {
         // Optimistically updates the UI first
