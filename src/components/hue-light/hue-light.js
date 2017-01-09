@@ -5,6 +5,7 @@ import _ from 'lodash';
 import { HueLightsService } from '../../services/HueLightsService';
 import config from '../../config/config';
 import hueColors from 'hue-colors';
+import { SuccessResponseReader } from '../../services/SuccessResponseReader';
 
 const logger = LogManager.getLogger('HueLight');
 
@@ -40,14 +41,15 @@ const getStyle = (state) => {
   };
 };
 
-@inject(HueLightsService)
+@inject(HueLightsService, SuccessResponseReader)
 export class HueLight {
   @bindable light;
 
   _slider = null;
 
-  constructor(hueLightsService) {
+  constructor(hueLightsService, successResponseReader) {
     this.hueLightsService = hueLightsService;
+    this.successResponseReader = successResponseReader;
   }
 
   bind() {
@@ -75,10 +77,24 @@ export class HueLight {
         tooltip: 'hide'
       });
 
-      this._colorpicker = $(`#colorpicker-${lightID}`).colorpicker();
-      this._colorpicker.on('changeColor', _.throttle(function(event) {
-        console.log(event.color.toRGB());
-      }, config.HUE_BRIDGE_DELAY));
+      // Activates the colorpicker and attaches required event handlers
+      $(`#colorpicker-${lightID}`).colorpicker()
+        .on('changeColor', _.throttle((event) => {
+          const { r, g, b } = event.color.toRGB();
+          const xy = hueColors.rgbToCIE1931(r, g, b);
+
+          this.hueLightsService
+            .setLightState(this.light.id, { xy })
+            .then((response) => {
+              const newXY = this.successResponseReader.readXY(
+                this.light.id,
+                response
+              );
+
+              logger.info('Light state set to', newXY);
+              this.light.state.xy = newXY;
+            });
+        }, config.HUE_BRIDGE_DELAY));
 
       this._slider.on('slide', (event) => {
         // Optimistically updates the UI first
@@ -93,9 +109,14 @@ export class HueLight {
         this.hueLightsService
           // Set the light properties on the bridge
           .setLightState(this.light.id, { bri: bri })
-          .then(() => {
-            logger.info('Light brightness set to', bri);
-            this.light.state.bri = bri;
+          .then((response) => {
+            const newBRI = this.successResponseReader.readBRI(
+              this.light.id,
+              response
+            );
+
+            logger.info('Light brightness set to', newBRI);
+            this.light.state.bri = newBRI;
             this.light.uiProps.style = getStyle(this.light.state);
           });
 
