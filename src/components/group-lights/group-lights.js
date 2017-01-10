@@ -1,6 +1,6 @@
-import { inject } from 'aurelia-framework';
-import { LogManager } from 'aurelia-framework';
+import { inject, LogManager } from 'aurelia-framework';
 import { Store } from 'aurelia-redux-plugin';
+
 import { HueLightsService } from '../../services/HueLightsService';
 import StateReader from '../../services/StateReader';
 
