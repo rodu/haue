@@ -9,7 +9,9 @@
     <h4>${light.name}</h4>
     <div id="cp2" class="input-group colorpicker-component">
       <input id="slider-${light.uiProps.id}" type="text">
-      <span id="colorpicker-${light.uiProps.id}" class="input-group-addon">
+      <span id="colorpicker-${light.uiProps.id}"
+        class="input-group-addon"
+        style.bind="light.uiProps.style">
         <i></i>
       </span>
     </div>

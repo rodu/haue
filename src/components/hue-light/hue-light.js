@@ -93,6 +93,7 @@ export class HueLight {
 
               logger.info('Light state set to', newXY);
               this.light.state.xy = newXY;
+              this.light.uiProps.style = getStyle(this.light.state);
             });
         }, config.HUE_BRIDGE_DELAY));
 
