@@ -4,6 +4,8 @@ import { createStore, combineReducers } from 'redux';
 import reducers from './reducers/reducers';
 import StatePersister from './services/StatePersister';
 
+import 'bootstrap';
+
 const logger = LogManager.getLogger('App');
 
 @inject(Store, StatePersister)

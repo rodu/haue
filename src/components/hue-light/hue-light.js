@@ -1,4 +1,5 @@
-import { inject, bindable, LogManager } from 'aurelia-framework'; import 'bootstrap-slider';
+import { inject, bindable, LogManager } from 'aurelia-framework';
+import 'bootstrap-slider';
 import 'bootstrap-colorpicker';
 import $ from 'jquery';
 import _ from 'lodash';

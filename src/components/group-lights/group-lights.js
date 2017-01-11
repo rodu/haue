@@ -1,18 +1,21 @@
 import { inject, LogManager } from 'aurelia-framework';
+import { EventAggregator } from 'aurelia-event-aggregator';
 import { Store } from 'aurelia-redux-plugin';
 
 import { HueLightsService } from '../../services/HueLightsService';
 import StateReader from '../../services/StateReader';
+import events from '../../config/events';
 
 const logger = LogManager.getLogger('GroupLights');
 
-@inject(Store, StateReader, HueLightsService)
+@inject(Store, StateReader, HueLightsService, EventAggregator)
 export class GroupLights {
 
-  constructor(store, stateReader, hueLightsService) {
+  constructor(store, stateReader, hueLightsService, eventAggregator) {
     this.store = store;
     this.stateReader = stateReader;
     this.hueLightsService = hueLightsService;
+    this.eventAggregator = eventAggregator;
   }
 
   attached() {
@@ -27,6 +30,15 @@ export class GroupLights {
           logger.error(error.message);
         });
     }
+  }
+
+  saveScene() {
+    const lights = this.lights.map(light => light.id);
+
+    // First let's show the popup to give a name to the lights
+    this.eventAggregator.publish(events.SCENE_ADD, lights);
+
+    logger.info('Saving lights', lights);
   }
 
 }

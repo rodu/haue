@@ -186,6 +186,13 @@
             "name": "hue-colors",
             "path": "../lib/hue-hacking-node",
             "main": "hue-colors"
+          },
+          {
+            "name": "bootstrap",
+            "path": "../node_modules/bootstrap/dist/js",
+            "main": "bootstrap",
+            "deps": ["jquery"],
+            "exports": "$"
           }
         ]
       }

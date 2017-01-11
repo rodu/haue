@@ -1,7 +1,19 @@
 <template>
   <require from="../hue-light/hue-light"></require>
 
-  <div class="row placeholders">
-    <hue-light repeat.for="light of lights" light.bind="light"></hue-light>
+  <div class="container">
+    <div class="row placeholders">
+      <div class="col-md-12">
+        <hue-light repeat.for="light of lights" light.bind="light"></hue-light>
+      </div>
+      <div class="col-md-12">
+        <button type="button"
+          click.trigger="saveScene()"
+          class="btn btn-default"
+          aria-label="Left Align">
+          <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
   </div>
 </template>
