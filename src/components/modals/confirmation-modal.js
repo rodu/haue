@@ -14,10 +14,11 @@ export class ConfirmationModal {
   }
 
   bind() {
+    const $modal = $(this.element).children('.modal');
+
     this.eventAggregator.subscribe(events.SCENE_ADD, (lights) => {
       logger.info('Showing modal to add a scene');
-      //$(this.element.)
-      $(this.element.querySelectorAll('.modal')[0]).modal('show');
+      $modal.modal('show');
     });
   }
 }

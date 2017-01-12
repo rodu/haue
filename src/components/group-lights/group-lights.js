@@ -2,6 +2,8 @@ import { inject, LogManager } from 'aurelia-framework';
 import { EventAggregator } from 'aurelia-event-aggregator';
 import { Store } from 'aurelia-redux-plugin';
 
+import _ from 'lodash';
+
 import { HueLightsService } from '../../services/HueLightsService';
 import StateReader from '../../services/StateReader';
 import events from '../../config/events';
@@ -33,6 +35,10 @@ export class GroupLights {
   }
 
   saveScene() {
+    if (_.isEmpty(this.lights)){
+      return;
+    }
+
     const lights = this.lights.map(light => light.id);
 
     // First let's show the popup to give a name to the lights
