@@ -34,13 +34,18 @@ export class HueGroups {
         };
 
         this.groups = _.map(groups, _.bind(mapActiveGroup, mapBinding));
+
+        // Once we have the group we want to load the lights for the
+        // first group
+        const firstGroup = _.head(this.groups);
+        this.selectGroup(firstGroup.name);
       })
       .catch((error) => {
         logger.error(error.message);
       });
   }
 
-  selectGroup(name) {
+  selectGroup(name = {}) {
     this.store.dispatch(groupSelectedAction(name));
   }
 }

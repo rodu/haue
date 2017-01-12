@@ -21,21 +21,24 @@ export class GroupLights {
   }
 
   attached() {
-    const activeGroup = this.stateReader.getProp('groupSelected.name');
-    if (activeGroup) {
-      this.hueLightsService.getLights()
-        .then((lights) => {
-          logger.debug('Loaded lights', lights);
-          this.lights = lights;
-        })
-        .catch((error) => {
-          logger.error(error.message);
-        });
-    }
+    this.store.subscribe(() => {
+      const activeGroup = this.store.getState();
+
+      if (activeGroup) {
+        this.hueLightsService.getLights()
+          .then((lights) => {
+            logger.debug('Loaded lights', lights);
+            this.lights = lights;
+          })
+          .catch((error) => {
+            logger.error(error.message);
+          });
+      }
+    });
   }
 
   saveScene() {
-    if (_.isEmpty(this.lights)){
+    if (_.isEmpty(this.lights)) {
       return;
     }
 
